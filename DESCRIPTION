@@ -17,4 +17,4 @@ Description: Supplies AnnotationHub with MeSHDb NIH MeSH annotation databases fo
 VignetteBuilder: knitr
 License: Artistic-2.0
 LazyLoad: yes
-biocViews: Annotation, AnnotationData, Bioinformatics, FunctionalAnnotation, MeSHDb, Software, DataImport, AnnotationHub
+biocViews: Annotation, AnnotationData, Bioinformatics, FunctionalAnnotation, MeSHDb, Software, DataImport, AnnotationHub, AnnotationHubSoftware
