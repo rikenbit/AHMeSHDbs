@@ -1,0 +1,64 @@
+---
+title: "Provide MeSHDb databases for AnnotationHub"
+author: "Koki Tsuyuzaki"
+graphics: no
+package: AHMeSHDbs
+output:
+    BiocStyle::html_document:
+        toc_float: true
+vignette: >
+    %\VignetteIndexEntry{Provide MeSHDb databases for AnnotationHub}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{AnnotationHub}
+---
+
+```{r style, echo = FALSE, results = 'asis', message=FALSE}
+BiocStyle::markdown()
+```
+
+**Authors**: `r packageDescription("AHMeSHDbs")[["Author"]] `<br />
+**Last modified:** `r file.info("creating-MeSHDbs.Rmd")$mtime`<br />
+**Compiled**: `r date()`
+
+# Fetch `MeSHDb` databases from `AnnotationHub`
+
+The `AHMeSHDbs` package provides the metadata for all `MeSHDb` SQLite databases
+in `r Biocpkg("AnnotationHub")`.
+First we load/update the `AnnotationHub` resource.
+
+```{r load-lib, message = FALSE}
+library(AnnotationHub)
+ah <- AnnotationHub()
+```
+
+Next we list all `MeSHDb` entries from `AnnotationHub`.
+
+```{r list-MeSHDb}
+query(ah, "MeSHDb")
+```
+
+We can confirm the metadata in AnnotationHub in Bioconductor S3 bucket
+with `mcols()`.
+
+```{r confirm-metadata}
+mcols(query(ah, "MeSHDb"))
+```
+
+We can query only the MeSHDb SQLite files for species *Mus musculus*.
+
+```{r query-mouse}
+qr <- query(ah, c("MeSHDb", "Mus musculus"))
+# filepath_mmu <- qr[[1]]
+```
+
+This filepath is can be specified with the argument of `RSQLite::dbConnect` and
+`MeSHDbi::MeSHDb` and also used as the argument of `meshr`, which is an
+R/Bioconductor package for MeSH enrichment analysis.
+
+For the details, check the vignettes of `RSQLite`, `MeSHDbi`, and `meshr`.
+
+# Session information {.unnumbered}
+```{r sessionInfo, echo=FALSE}
+sessionInfo()
+```
