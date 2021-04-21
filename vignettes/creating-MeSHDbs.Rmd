@@ -21,6 +21,15 @@ BiocStyle::markdown()
 **Last modified:** `r file.info("creating-MeSHDbs.Rmd")$mtime`<br />
 **Compiled**: `r date()`
 
+# Installation
+To install this package, start R (>= 4.1.0) and enter:
+
+```{r install, eval=FALSE}
+if(!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("AHMeSHDbs")
+```
+
 # Fetch `MeSHDb` databases from `AnnotationHub`
 
 The `AHMeSHDbs` package provides the metadata for all `MeSHDb` SQLite databases
